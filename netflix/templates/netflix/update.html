@@ -1,0 +1,18 @@
+{% extends 'netflix/layout.html' %}
+
+{% block pageTitle %}
+    update {{ movie.title }}
+{% endblock %}
+
+
+{% block body %}
+<form action="{% url 'update'  movie.pk  %}" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token%}
+     
+    {{ mform.as_p }}
+
+     <button type="submit">Update {{movie.title}}</button>
+</form>
+
+{% endblock %}

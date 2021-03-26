@@ -1,0 +1,15 @@
+{% extends 'netflix/layout.html' %}
+
+{% block pageTitle %}
+    add movie
+{% endblock %}
+
+
+{% block body %}
+<form action="{% url 'add' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token%}
+     {{ mform.as_p }}
+    <button type="submit">Add Movie</button>
+</form>
+
+{% endblock %}

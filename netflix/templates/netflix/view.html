@@ -1,0 +1,21 @@
+{% extends 'netflix/layout.html' %}
+
+{% block pageTitle %}
+{{ movie.title }}
+{% endblock %}
+
+
+{% block body %}
+    <h2>{{ movie.title }}</h2>
+    <video controls width="100%">
+        <source src="{{ movie.video.url }}" >
+        <!-- <source src="{{ request.scheme }}://{{request.get_host}}{{ movie.video.url }}" > -->
+    </video>
+    <br>
+    <p><strong>Category:</strong> {{movie.category}}</p>
+    <p><strong>Casts:</strong> {% for cast in movie.casts.all%} {{cast}}, {% endfor %}</p>
+    <p><strong>Description:</strong>{{movie.description}}</p>
+    <p>production date: {{movie.productionYear}}</p>
+    <p>Rate: {{movie.rate}}</p>
+
+{% endblock %}

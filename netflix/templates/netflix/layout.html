@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block pageTitle %}{% endblock %}</title>
+</head>
+<body>
+    <header style="display: block;">
+        <h1>Netflix</h1>
+        <ul style="text-decoration: none; list-style: none; padding: 20px; ">
+            <li><a href="{% url 'index' %}">home</a></li>
+            <li><a href="{% url 'add' %}">Add Movie</a></li>
+            <li>About us</li>
+            {% if user.is_authenticated  %}
+                <p>Hey {{ user.username }}</p>
+                <li><a href="{% url 'logOut' %}">Log Out</a></li>
+            {% else %}
+                <li><a href="{% url 'signUp' %}">Sign Up</a></li>
+                <li><a href="{% url 'signIn' %}">Sign In</a></li>
+            {% endif %}
+        </ul>
+    </header>
+    <main>
+        {% block body%}
+        {% endblock %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends 'netflix/layout.html' %}
+
+{% block pageTitle %}
+    Sign Up
+{% endblock %}
+
+{% block body %}
+    <form action="{% url 'signUp' %}" method="POST">
+        {% csrf_token %}
+        {{ uform.as_p }}
+        <button type="submit">Sign Up</button>
+    </form>
+    <p>Already signed up? try to login then <button><a href="{% url 'signIn' %}">Sign In</a></button></p>
+
+{% endblock %}

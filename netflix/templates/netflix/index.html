@@ -1,0 +1,33 @@
+{% extends 'netflix/layout.html' %}
+
+{% block pageTitle %}
+    NetFLix Home
+{% endblock %}
+
+
+{% block body %}
+    <div style="display: flex;">
+
+        {% for movie in movies %}
+        <div style="max-width: 500px; max-height:300px; margin: 20px;">
+            <h3 style="text-align: center;">{{movie.title}}</h3>
+            <a href="{% url 'view' movie.id %}">
+                <img src="{{movie.poster.url}}" width="500px" height="250px" alt="movie poster">
+            </a>
+            <p><strong>Description:</strong> {{movie.description}} </p>
+            <p>Rate: {{movie.rate}}</p>
+            <p>Categoty: {{movie.category}}</p>
+            <p>Casts: {% for cast in movie.casts.all %} {{cast}}, {% endfor %} </p>
+            <span>
+                <button style=" display: inline; padding:10px; background-color: green;"><a href="{% url 'update' movie.pk %}" style="text-decoration: none;">Update {{movie.title}}</a></button>
+                <button style=" display: inline; padding: 10px; background-color: red;"><a href="{% url 'delete' movie.pk %}" style="text-decoration: none;">Delete {{movie.title}}</a></button>
+            </span>
+        </div>
+    
+        {% empty %}
+            <p>Your system's database doesn't have any movies to show, you can add one and come again
+                <button style="padding: 25px;"><a href="{% url 'add' %}" style="text-decoration: none;">Add Movie</a></button> Thanks</p>
+        {% endfor %}
+        
+    </div>
+{% endblock %}
